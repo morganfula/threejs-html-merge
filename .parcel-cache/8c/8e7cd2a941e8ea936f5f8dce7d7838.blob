@@ -1,0 +1,2 @@
+var _three = require('three');
+const scene = new _three.Scene();

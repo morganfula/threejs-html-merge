@@ -1,0 +1,1 @@
+module.exports="#define GLSLIFY 1\n// varying vec2 vUv;\nvoid main()\t{\n\t// vec2 newUV = (vUv - vec2(0.5))*resolution.zw + vec2(0.5);\n\tgl_FragColor = vec4(1,0.0,1.);\n}";

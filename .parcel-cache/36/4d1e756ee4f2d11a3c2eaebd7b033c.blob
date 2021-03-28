@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>*{margin:0;padding:0} 
+		canvas{display: block}
+		#container{width: 100vw;height: 100vh}
+</style>
+</head>
+<body>
+	<div id="container"></div>
+	<script src="/index.HASH_REF_b9167a940929bdec77a4418224e1d95d.js"></script>
+</body>
+</html>

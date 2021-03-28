@@ -1,0 +1,38 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+var _three = require('three');
+class Sketch {
+  constructor(options) {
+    this.time = 0;
+    this.render();
+  }
+  resize() {}
+  addObject() {
+    this.geometry = new _three.BoxGeometry(0.2, 0.2, 0.2);
+    this.material = new _three.MeshNormalMaterial();
+    this.mesh = new _three.Mesh(this.geometry, this.material);
+    this.scene.add(this.mesh);
+  }
+  render() {
+    this.time += 0.05;
+    window.requestAnimationFrame(this.render.bind(this));
+  }
+}
+exports.default = Sketch;
+new Sketch();
+function init() {
+  camera = new _three.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
+  camera.position.z = 1;
+  scene = new _three.Scene();
+  renderer = new _three.WebGLRenderer({
+    antialias: true
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setAnimationLoop(animation);
+  document.body.appendChild(renderer.domElement);
+}
+function animation(time) {
+  mesh.rotation.x = time / 2000;
+  mesh.rotation.y = time / 1000;
+  renderer.render(scene, camera);
+}

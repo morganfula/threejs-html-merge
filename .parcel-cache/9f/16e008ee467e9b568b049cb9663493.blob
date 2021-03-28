@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style data-parcel-key="1cd95a884915c4f8d3fbf4b8d89a08c6">
+		* {
+			margin: 0;
+			padding: 0
+		}
+
+		canvas {
+			display: block
+		}
+
+		#container {
+			width: 100vw;
+			height: 100vh
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<h1>
+			Hello
+		</h1>
+	</div>
+	<script src="dd9200a91ee7860ba09c1c0650a486d9"></script>
+</body>
+
+</html>

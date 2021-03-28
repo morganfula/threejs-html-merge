@@ -1,0 +1,15 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+require('three');
+class Sketch {
+  constructor(options) {
+    this.time = 0;
+    this.render();
+  }
+  render() {
+    this.time += 0.05;
+    window.requestAnimationFrame(this.render.bind(this));
+  }
+}
+exports.default = Sketch;
+new Sketch();

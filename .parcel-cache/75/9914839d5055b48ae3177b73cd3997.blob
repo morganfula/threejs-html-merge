@@ -1,0 +1,1 @@
+module.exports="#define GLSLIFY 1\n// varying vec2 vUv;\n\nvarying float vNoise;\n\nvoid main()\t{\n\t// vec2 newUV = (vUv - vec2(0.5))*resolution.zw + vec2(0.5);\n\tvec3 color1 = vec3(212., 241., 0.);\n\tvec3 color2 = vec3(212., 241., 0.);\n\tvec3 finalcolor = mix(color1, color2, 0.5*(vNoise + 1.));\n\n\tgl_FragColor = vec4(finalcolor, 1.);\n}";

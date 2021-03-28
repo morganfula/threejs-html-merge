@@ -1,0 +1,81 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+var _three = require('three');
+var _threeExamplesJsmControlsOrbitControlsJs = require('three/examples/jsm/controls/OrbitControls.js');
+var _shaderFragmentGlsl = require('./shader/fragment.glsl');
+var _shaderFragmentGlslDefault = _parcelHelpers.interopDefault(_shaderFragmentGlsl);
+var _shaderVertexGlsl = require('./shader/vertex.glsl');
+var _shaderVertexGlslDefault = _parcelHelpers.interopDefault(_shaderVertexGlsl);
+class Sketch {
+  constructor(options) {
+    this.time = 0;
+    this.container = options.dom;
+    this.scene = new _three.Scene();
+    this.width = this.container.offsetWidth;
+    this.height = this.container.offsetHeight;
+    this.camera = new _three.PerspectiveCamera(70, this.width / this.height, 0.01, 10);
+    this.camera.position.z = 1;
+    this.renderer = new _three.WebGLRenderer({
+      antialias: true
+    });
+    this.renderer.setSize(this.width, this.height);
+    this.container.appendChild(this.renderer.domElement);
+    this.controls = new _threeExamplesJsmControlsOrbitControlsJs.OrbitControls(this.camera, this.renderer.domElement);
+    this.resize();
+    this.setupResize();
+    this.addObjects();
+    this.render();
+  }
+  setupResize() {
+    window.addEventListener('resize', this.resize.bind(this));
+  }
+  resize() {
+    // recalculate the size of the container
+    this.width = this.container.offsetWidth;
+    this.height = this.container.offsetHeight;
+    // re set the renderer
+    this.renderer.setSize(this.width, this.height);
+    // change aspect ratio of the camera
+    this.camera.aspect = this.width / this.height;
+    this.camera.updateProjectionMatrix();
+  }
+  addObjects() {
+    this.geometry = new _three.PlaneBufferGeometry(4, 4, 150, 150);
+    this.material = new _three.MeshNormalMaterial();
+    this.material = new _three.ShaderMaterial({
+      uniforms: {
+        time: {
+          value: 0
+        }
+      },
+      side: _three.DoubleSide,
+      fragmentShader: _shaderFragmentGlslDefault.default,
+      vertexShader: _shaderVertexGlslDefault.default,
+      wireframe: true
+    });
+    this.mesh = new _three.Mesh(this.geometry, this.material);
+    this.scene.add(this.mesh);
+  }
+  render() {
+    this.time += 0.05;
+    this.mesh.rotation.x = this.time / 2000;
+    this.mesh.rotation.y = this.time / 1000;
+    this.material.uniforms.time.value = this.time;
+    this.renderer.render(this.scene, this.camera);
+    window.requestAnimationFrame(this.render.bind(this));
+  }
+}
+exports.default = Sketch;
+new Sketch({
+  dom: document.getElementById('container')
+});
+function init() {
+  scene = new _three.Scene();
+  renderer = new _three.WebGLRenderer({
+    antialias: true
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setAnimationLoop(animation);
+  document.body.appendChild(renderer.domElement);
+}
+function animation(time) {}
