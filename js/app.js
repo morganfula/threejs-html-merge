@@ -17,10 +17,10 @@ export default class Sketch {
     this.camera = new THREE.PerspectiveCamera(
       70,
       this.width / this.height,
-      0.01,
-      10
+      100,
+      2000
     );
-    this.camera.position.z = 1;
+    this.camera.position.z = 600;
 
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -53,8 +53,8 @@ export default class Sketch {
   }
 
   addObjects() {
-    this.geometry = new THREE.PlaneBufferGeometry(1, 1, 50, 50);
-    this.geometry = new THREE.SphereBufferGeometry(0.4, 50, 50);
+    this.geometry = new THREE.PlaneBufferGeometry(100, 100, 10, 10);
+    // this.geometry = new THREE.SphereBufferGeometry(0.4, 50, 50);
     this.material = new THREE.MeshNormalMaterial();
 
     this.material = new THREE.ShaderMaterial({
