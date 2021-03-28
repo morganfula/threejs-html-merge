@@ -1,0 +1,1 @@
+module.exports="#define GLSLIFY 1\n// varying vec2 vUv;\n\nvarying float vNoise;\nvarying vec2 vUv;\nuniform sampler2D uImage;\nuniform float time;\n\nvoid main()\t{\n\n\tvec2 newUV = vUv;\n\n\t\n\n\tvec4 oceanView = texture2D(uImage, newUV);\n\t\t\n\n\t// gl_FragColor = vec4(vUv,0., 1.);\n\t\n\t\n\tgl_FragColor = oceanView;\n\tgl_FragColor.rgb += 0.05*vec3(vNoise);\n}";
