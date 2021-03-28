@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import imagesLoaded from 'imagesloaded';
+import gsap from 'gsap';
 import FontFaceObserver from 'fontfaceobserver';
 import Scroll from './scroll';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -61,11 +62,15 @@ export default class Sketch {
 
     let allDone = [fontOpen, fontPlayfair, preloadImages];
     this.currentScroll = 0;
+    this.raycaster = new THREE.Raycaster();
+    this.mouse = new THREE.Vector2();
 
     Promise.all(allDone).then(() => {
       this.scroll = new Scroll();
       this.addImages();
       this.setPosition();
+
+      this.mouseMovement();
       this.resize();
       this.setupResize();
       // this.addObjects();
@@ -76,6 +81,28 @@ export default class Sketch {
       //   this.setPosition();
       // });
     });
+  }
+
+  mouseMovement() {
+    window.addEventListener(
+      'mousemove',
+      (event) => {
+        this.mouse.x = (event.clientX / this.width) * 2 - 1;
+        this.mouse.y = -(event.clientY / this.height) * 2 + 1;
+
+        // update the picking ray with the camera and mouse position
+        this.raycaster.setFromCamera(this.mouse, this.camera);
+
+        // calculate objects intersecting the picking ray
+        const intersects = this.raycaster.intersectObjects(this.scene.children);
+
+        if (intersects.length > 0) {
+          let obj = intersects[0].object;
+          obj.material.uniforms.hover.value = intersects[0].uv;
+        }
+      },
+      false
+    );
   }
 
   setupResize() {
@@ -94,23 +121,61 @@ export default class Sketch {
   }
 
   addImages() {
+    this.material = new THREE.ShaderMaterial({
+      uniforms: {
+        time: { value: 0 },
+        uImage: { value: 0 },
+        hover: { value: new THREE.Vector2(0.5, 0.5) },
+        hoverState: { value: 0 },
+        oceanTexture: { value: new THREE.TextureLoader().load(ocean) },
+      },
+      side: THREE.DoubleSide,
+      fragmentShader: fragment,
+      vertexShader: vertex,
+      wireframe: false,
+    });
+
+    this.materials = [];
+
     this.imageStore = this.images.map((img) => {
       let bounds = img.getBoundingClientRect();
 
       let geometry = new THREE.PlaneBufferGeometry(
         bounds.width,
         bounds.height,
-        1,
-        1
+        10,
+        10
       );
 
       let texture = new THREE.Texture(img);
       texture.needsUpdate = true;
 
-      let material = new THREE.MeshBasicMaterial({
-        // color: 0xff0000,
-        map: texture,
+      // let material = new THREE.MeshBasicMaterial({
+      //   // color: 0xff0000,
+      //   map: texture,
+      // });
+
+      let material = this.material.clone();
+
+      img.addEventListener('mouseenter', () => {
+        console.log('Enter');
+        gsap.to(material.uniforms.hoverState, {
+          duration: 1,
+          value: 1,
+        });
       });
+
+      img.addEventListener('mouseout', () => {
+        console.log('Out');
+        gsap.to(material.uniforms.hoverState, {
+          duration: 1,
+          value: 0,
+        });
+      });
+
+      this.materials.push(material);
+
+      material.uniforms.uImage.value = texture;
 
       let mesh = new THREE.Mesh(geometry, material);
 
@@ -167,6 +232,10 @@ export default class Sketch {
     // this.mesh.rotation.y = this.time / 1000;
 
     // this.material.uniforms.time.value = this.time;
+
+    this.materials.forEach((m) => {
+      m.uniforms.time.value = this.time;
+    });
 
     this.renderer.render(this.scene, this.camera);
     window.requestAnimationFrame(this.render.bind(this));
