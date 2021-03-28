@@ -38,6 +38,9 @@ export default class Sketch {
       antialias: true,
       alpha: true,
     });
+
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
     this.renderer.setSize(this.width, this.height);
     this.container.appendChild(this.renderer.domElement);
 
@@ -45,17 +48,17 @@ export default class Sketch {
 
     this.images = [...document.querySelectorAll('img')];
 
-    const fontOpen = new Promise((resolve) => {
-      new FontFaceObserver('Open Sans').load().then(() => {
+    const Nunito = new Promise((resolve) => {
+      new FontFaceObserver('Nunito Sans').load().then(() => {
         resolve();
       });
     });
 
-    const fontPlayfair = new Promise((resolve) => {
-      new FontFaceObserver('Playfair Display').load().then(() => {
-        resolve();
-      });
-    });
+    // const fontPlayfair = new Promise((resolve) => {
+    //   new FontFaceObserver('Playfair Display').load().then(() => {
+    //     resolve();
+    //   });
+    // });
 
     // Preload images
     const preloadImages = new Promise((resolve, reject) => {
@@ -66,8 +69,9 @@ export default class Sketch {
       );
     });
 
-    let allDone = [fontOpen, fontPlayfair, preloadImages];
+    let allDone = [Nunito, preloadImages];
     this.currentScroll = 0;
+    this.previousScroll = 0;
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
 
@@ -121,14 +125,17 @@ export default class Sketch {
         void main(){
           vec2 newUV = vUv;
           float area = smoothstep(1.,0.7,vUv.y) * 2. - 1.;
+
           // area = pow(area,4.);
+
           float noise = 0.5*(cnoise(vec3(vUv*10., time)) + 1.);
           float n = smoothstep(0.5,0.51, noise + area);
           newUV.x -= (vUv.x - 0.5)*0.1*area*scrollSpeed;
           gl_FragColor = texture2D( tDiffuse, newUV);
+
           // gl_FragColor = vec4(n,0.,0.,1.);
 
-          gl_FragColor = mix(vec4(1.), texture2D( tDiffuse, newUV ), (n));
+          gl_FragColor = mix(vec4(0.228, 0.545, 0.990, 1.), texture2D( tDiffuse, newUV ), (n));
         }
         `,
     };
@@ -196,12 +203,7 @@ export default class Sketch {
     this.imageStore = this.images.map((img) => {
       let bounds = img.getBoundingClientRect();
 
-      let geometry = new THREE.PlaneBufferGeometry(
-        bounds.width,
-        bounds.height,
-        10,
-        10
-      );
+      let geometry = new THREE.PlaneBufferGeometry(1, 1, 10, 10);
 
       let texture = new THREE.Texture(img);
       texture.needsUpdate = true;
@@ -234,6 +236,8 @@ export default class Sketch {
       material.uniforms.uImage.value = texture;
 
       let mesh = new THREE.Mesh(geometry, material);
+
+      mesh.scale.set(bounds.width, bounds.height, 1);
 
       this.scene.add(mesh);
 
@@ -280,14 +284,18 @@ export default class Sketch {
 
   render() {
     this.time += 0.05;
+
     this.scroll.render();
+    this.previousScroll = this.currentScroll;
+
     this.currentScroll = this.scroll.scrollToRender;
+
+    // if (Math.round(this.currentScroll) !== Math.round(this.previousScroll)) {
+    console.log('Should render');
+
     this.setPosition();
     this.customPass.uniforms.scrollSpeed.value = this.scroll.speedTarget;
     this.customPass.uniforms.time.value = this.time;
-
-    // this.mesh.rotation.x = this.time / 2000;
-    // this.mesh.rotation.y = this.time / 1000;
 
     // this.material.uniforms.time.value = this.time;
 
@@ -297,6 +305,7 @@ export default class Sketch {
 
     // this.renderer.render(this.scene, this.camera);
     this.composer.render();
+    // }
 
     window.requestAnimationFrame(this.render.bind(this));
   }
