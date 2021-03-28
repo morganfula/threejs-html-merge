@@ -1,0 +1,20 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "CopyShader", function () {
+  return CopyShader;
+});
+/**
+* Full-screen textured quad shader
+*/
+var CopyShader = {
+  uniforms: {
+    'tDiffuse': {
+      value: null
+    },
+    'opacity': {
+      value: 1.0
+    }
+  },
+  vertexShader: ['varying vec2 vUv;', 'void main() {', '	vUv = uv;', '	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );', '}'].join('\n'),
+  fragmentShader: ['uniform float opacity;', 'uniform sampler2D tDiffuse;', 'varying vec2 vUv;', 'void main() {', '	vec4 texel = texture2D( tDiffuse, vUv );', '	gl_FragColor = opacity * texel;', '}'].join('\n')
+};
