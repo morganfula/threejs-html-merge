@@ -103,8 +103,8 @@ h2 {
 
 /* footer */
 .footer {
-  border-top: 1px solid #ccc;
-
+  border-top: 1px solid #fff;
+  color: #fff;
   padding: 1em;
   font-size: 15px;
   display: flex;
@@ -113,7 +113,7 @@ h2 {
   padding: 1em 0 4em 0;
 }
 .footer a {
-  color: #333;
+  color: #fff;
 }
 .footer p + p {
   margin-left: auto;

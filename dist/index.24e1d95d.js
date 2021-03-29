@@ -715,7 +715,7 @@ new Sketch({
   dom: document.getElementById('container')
 });
 
-},{"three":"1lq1c","three/examples/jsm/controls/OrbitControls.js":"5mYmG","./shader/fragment.glsl":"16D1r","./shader/vertex.glsl":"2wfF9","url:../img/ocean.jpg":"2natq","@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X","imagesloaded":"v9R4A","fontfaceobserver":"Jaul3","./scroll":"3JuFm","gsap":"1iecp","three/examples/jsm/postprocessing/EffectComposer.js":"2FssS","three/examples/jsm/postprocessing/RenderPass.js":"6jHan","three/examples/jsm/postprocessing/ShaderPass.js":"27khe","three/examples/jsm/postprocessing/UnrealBloomPass.js":"5kLdd","./shader/noise.glsl":"4Xklj"}],"1lq1c":[function(require,module,exports) {
+},{"three":"1lq1c","three/examples/jsm/controls/OrbitControls.js":"5mYmG","./shader/fragment.glsl":"16D1r","./shader/vertex.glsl":"2wfF9","url:../img/ocean.jpg":"2natq","@parcel/transformer-js/lib/esmodule-helpers.js":"53paB","imagesloaded":"v9R4A","fontfaceobserver":"Jaul3","./scroll":"3JuFm","gsap":"1iecp","three/examples/jsm/postprocessing/EffectComposer.js":"2FssS","three/examples/jsm/postprocessing/RenderPass.js":"6jHan","three/examples/jsm/postprocessing/ShaderPass.js":"27khe","three/examples/jsm/postprocessing/UnrealBloomPass.js":"5kLdd","./shader/noise.glsl":"4Xklj"}],"1lq1c":[function(require,module,exports) {
 var define;
 // threejs.org/license
 (function (global, factory) {
@@ -32729,7 +32729,7 @@ var MapControls = function (object, domElement) {
 MapControls.prototype = Object.create(_buildThreeModuleJs.EventDispatcher.prototype);
 MapControls.prototype.constructor = MapControls;
 
-},{"../../../build/three.module.js":"28ZQO","@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X"}],"28ZQO":[function(require,module,exports) {
+},{"../../../build/three.module.js":"28ZQO","@parcel/transformer-js/lib/esmodule-helpers.js":"53paB"}],"28ZQO":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
 _parcelHelpers.export(exports, "ACESFilmicToneMapping", function () {
@@ -63111,7 +63111,7 @@ if (typeof window !== 'undefined') {
   }
 }
 
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X"}],"2mo3X":[function(require,module,exports) {
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"53paB"}],"53paB":[function(require,module,exports) {
 "use strict";
 
 exports.interopDefault = function (a) {
@@ -63159,7 +63159,7 @@ module.exports="#define GLSLIFY 1\n// varying vec2 vUv;\n\nvarying float vNoise;
 module.exports="#define GLSLIFY 1\n//\tClassic Perlin 3D Noise \n//\tby Stefan Gustavson\n//\nvec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}\nvec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}\nvec3 fade(vec3 t) {return t*t*t*(t*(t*6.0-15.0)+10.0);}\n\nfloat cnoise(vec3 P){\n  vec3 Pi0 = floor(P); // Integer part for indexing\n  vec3 Pi1 = Pi0 + vec3(1.0); // Integer part + 1\n  Pi0 = mod(Pi0, 289.0);\n  Pi1 = mod(Pi1, 289.0);\n  vec3 Pf0 = fract(P); // Fractional part for interpolation\n  vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0\n  vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);\n  vec4 iy = vec4(Pi0.yy, Pi1.yy);\n  vec4 iz0 = Pi0.zzzz;\n  vec4 iz1 = Pi1.zzzz;\n\n  vec4 ixy = permute(permute(ix) + iy);\n  vec4 ixy0 = permute(ixy + iz0);\n  vec4 ixy1 = permute(ixy + iz1);\n\n  vec4 gx0 = ixy0 / 7.0;\n  vec4 gy0 = fract(floor(gx0) / 7.0) - 0.5;\n  gx0 = fract(gx0);\n  vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);\n  vec4 sz0 = step(gz0, vec4(0.0));\n  gx0 -= sz0 * (step(0.0, gx0) - 0.5);\n  gy0 -= sz0 * (step(0.0, gy0) - 0.5);\n\n  vec4 gx1 = ixy1 / 7.0;\n  vec4 gy1 = fract(floor(gx1) / 7.0) - 0.5;\n  gx1 = fract(gx1);\n  vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);\n  vec4 sz1 = step(gz1, vec4(0.0));\n  gx1 -= sz1 * (step(0.0, gx1) - 0.5);\n  gy1 -= sz1 * (step(0.0, gy1) - 0.5);\n\n  vec3 g000 = vec3(gx0.x,gy0.x,gz0.x);\n  vec3 g100 = vec3(gx0.y,gy0.y,gz0.y);\n  vec3 g010 = vec3(gx0.z,gy0.z,gz0.z);\n  vec3 g110 = vec3(gx0.w,gy0.w,gz0.w);\n  vec3 g001 = vec3(gx1.x,gy1.x,gz1.x);\n  vec3 g101 = vec3(gx1.y,gy1.y,gz1.y);\n  vec3 g011 = vec3(gx1.z,gy1.z,gz1.z);\n  vec3 g111 = vec3(gx1.w,gy1.w,gz1.w);\n\n  vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));\n  g000 *= norm0.x;\n  g010 *= norm0.y;\n  g100 *= norm0.z;\n  g110 *= norm0.w;\n  vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));\n  g001 *= norm1.x;\n  g011 *= norm1.y;\n  g101 *= norm1.z;\n  g111 *= norm1.w;\n\n  float n000 = dot(g000, Pf0);\n  float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));\n  float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));\n  float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));\n  float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));\n  float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));\n  float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));\n  float n111 = dot(g111, Pf1);\n\n  vec3 fade_xyz = fade(Pf0);\n  vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);\n  vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);\n  float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x); \n  return 2.2 * n_xyz;\n}\n\nuniform float time;\nvarying float vNoise;\nvarying vec2 vUv;\nuniform vec2 hover;\nuniform float hoverState;\n\n// varying vec2 vUv;\nvoid main() {\n  // vUv = uv;\n  vec3 newposition = position;\n  float PI = 3.1415925;\n\n  float noise = cnoise(3.*vec3(position.x, position.y, position.z + time/10.));\n  // newposition.z += 0.1*sin((newposition.x + 0.25 + time/10.)*2.*PI);\n  // newposition.z += 0.2*cnoise(vec3(position.x*2., position.y*2. + time/10., 0.));\n  // newposition.z += 0.05*noise;\n  // float dist = distance(uv, vec2(0.5));\n\n  float dist = distance(uv, hover);\n\n  newposition.z += hoverState*10. *sin(dist*10. + time);\n\n  // newposition.z += 0.05*sin(dist *40.);\n\n  // newposition += 0.02*normal * noise; \n  // vNoise = noise;\n  vNoise = hoverState *  sin(dist*10. - time);\n  vUv = uv;\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4( newposition, 1.0 );\n}";
 },{}],"2natq":[function(require,module,exports) {
 module.exports = require('./bundle-url').getBundleURL() + "ocean.c619fa96.jpg"
-},{"./bundle-url":"1DZfZ"}],"1DZfZ":[function(require,module,exports) {
+},{"./bundle-url":"2u9cX"}],"2u9cX":[function(require,module,exports) {
 "use strict";
 
 /* globals document:readonly */
@@ -63702,7 +63702,7 @@ class Scroll {
 }
 exports.default = Scroll;
 
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X"}],"1iecp":[function(require,module,exports) {
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"53paB"}],"1iecp":[function(require,module,exports) {
 var define;
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) : typeof define === 'function' && define.amd ? define(['exports'], factory) : (global = global || self, factory(global.window = global.window || ({})));
@@ -67290,7 +67290,7 @@ Pass.FullScreenQuad = (function () {
   return FullScreenQuad;
 })();
 
-},{"../../../build/three.module.js":"28ZQO","../shaders/CopyShader.js":"11ksJ","../postprocessing/ShaderPass.js":"27khe","../postprocessing/MaskPass.js":"12VBS","@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X"}],"11ksJ":[function(require,module,exports) {
+},{"../../../build/three.module.js":"28ZQO","../shaders/CopyShader.js":"11ksJ","../postprocessing/ShaderPass.js":"27khe","../postprocessing/MaskPass.js":"12VBS","@parcel/transformer-js/lib/esmodule-helpers.js":"53paB"}],"11ksJ":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
 _parcelHelpers.export(exports, "CopyShader", function () {
@@ -67312,7 +67312,7 @@ var CopyShader = {
   fragmentShader: ['uniform float opacity;', 'uniform sampler2D tDiffuse;', 'varying vec2 vUv;', 'void main() {', '	vec4 texel = texture2D( tDiffuse, vUv );', '	gl_FragColor = opacity * texel;', '}'].join('\n')
 };
 
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X"}],"27khe":[function(require,module,exports) {
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"53paB"}],"27khe":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
 _parcelHelpers.export(exports, "ShaderPass", function () {
@@ -67357,7 +67357,7 @@ ShaderPass.prototype = Object.assign(Object.create(_postprocessingPassJs.Pass.pr
   }
 });
 
-},{"../../../build/three.module.js":"28ZQO","../postprocessing/Pass.js":"GBzRG","@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X"}],"GBzRG":[function(require,module,exports) {
+},{"../../../build/three.module.js":"28ZQO","../postprocessing/Pass.js":"GBzRG","@parcel/transformer-js/lib/esmodule-helpers.js":"53paB"}],"GBzRG":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
 _parcelHelpers.export(exports, "Pass", function () {
@@ -67411,7 +67411,7 @@ Pass.FullScreenQuad = (function () {
   return FullScreenQuad;
 })();
 
-},{"../../../build/three.module.js":"28ZQO","@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X"}],"12VBS":[function(require,module,exports) {
+},{"../../../build/three.module.js":"28ZQO","@parcel/transformer-js/lib/esmodule-helpers.js":"53paB"}],"12VBS":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
 _parcelHelpers.export(exports, "MaskPass", function () {
@@ -67486,7 +67486,7 @@ Object.assign(ClearMaskPass.prototype, {
   }
 });
 
-},{"../postprocessing/Pass.js":"GBzRG","@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X"}],"6jHan":[function(require,module,exports) {
+},{"../postprocessing/Pass.js":"GBzRG","@parcel/transformer-js/lib/esmodule-helpers.js":"53paB"}],"6jHan":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
 _parcelHelpers.export(exports, "RenderPass", function () {
@@ -67539,7 +67539,7 @@ RenderPass.prototype = Object.assign(Object.create(_postprocessingPassJs.Pass.pr
   }
 });
 
-},{"../../../build/three.module.js":"28ZQO","../postprocessing/Pass.js":"GBzRG","@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X"}],"5kLdd":[function(require,module,exports) {
+},{"../../../build/three.module.js":"28ZQO","../postprocessing/Pass.js":"GBzRG","@parcel/transformer-js/lib/esmodule-helpers.js":"53paB"}],"5kLdd":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
 _parcelHelpers.export(exports, "UnrealBloomPass", function () {
@@ -67857,7 +67857,7 @@ UnrealBloomPass.prototype = Object.assign(Object.create(_postprocessingPassJs.Pa
 UnrealBloomPass.BlurDirectionX = new _buildThreeModuleJs.Vector2(1.0, 0.0);
 UnrealBloomPass.BlurDirectionY = new _buildThreeModuleJs.Vector2(0.0, 1.0);
 
-},{"../../../build/three.module.js":"28ZQO","../postprocessing/Pass.js":"GBzRG","../shaders/CopyShader.js":"11ksJ","../shaders/LuminosityHighPassShader.js":"2cfy1","@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X"}],"2cfy1":[function(require,module,exports) {
+},{"../../../build/three.module.js":"28ZQO","../postprocessing/Pass.js":"GBzRG","../shaders/CopyShader.js":"11ksJ","../shaders/LuminosityHighPassShader.js":"2cfy1","@parcel/transformer-js/lib/esmodule-helpers.js":"53paB"}],"2cfy1":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
 _parcelHelpers.export(exports, "LuminosityHighPassShader", function () {
@@ -67891,7 +67891,7 @@ var LuminosityHighPassShader = {
   fragmentShader: ['uniform sampler2D tDiffuse;', 'uniform vec3 defaultColor;', 'uniform float defaultOpacity;', 'uniform float luminosityThreshold;', 'uniform float smoothWidth;', 'varying vec2 vUv;', 'void main() {', '	vec4 texel = texture2D( tDiffuse, vUv );', '	vec3 luma = vec3( 0.299, 0.587, 0.114 );', '	float v = dot( texel.xyz, luma );', '	vec4 outputColor = vec4( defaultColor.rgb, defaultOpacity );', '	float alpha = smoothstep( luminosityThreshold, luminosityThreshold + smoothWidth, v );', '	gl_FragColor = mix( outputColor, texel, alpha );', '}'].join('\n')
 };
 
-},{"../../../build/three.module.js":"28ZQO","@parcel/transformer-js/lib/esmodule-helpers.js":"2mo3X"}],"4Xklj":[function(require,module,exports) {
+},{"../../../build/three.module.js":"28ZQO","@parcel/transformer-js/lib/esmodule-helpers.js":"53paB"}],"4Xklj":[function(require,module,exports) {
 module.exports="#define GLSLIFY 1\n//\tClassic Perlin 3D Noise \n//\tby Stefan Gustavson\n//\nvec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}\nvec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}\nvec3 fade(vec3 t) {return t*t*t*(t*(t*6.0-15.0)+10.0);}\n\nfloat cnoise(vec3 P){\n  vec3 Pi0 = floor(P); // Integer part for indexing\n  vec3 Pi1 = Pi0 + vec3(1.0); // Integer part + 1\n  Pi0 = mod(Pi0, 289.0);\n  Pi1 = mod(Pi1, 289.0);\n  vec3 Pf0 = fract(P); // Fractional part for interpolation\n  vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0\n  vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);\n  vec4 iy = vec4(Pi0.yy, Pi1.yy);\n  vec4 iz0 = Pi0.zzzz;\n  vec4 iz1 = Pi1.zzzz;\n\n  vec4 ixy = permute(permute(ix) + iy);\n  vec4 ixy0 = permute(ixy + iz0);\n  vec4 ixy1 = permute(ixy + iz1);\n\n  vec4 gx0 = ixy0 / 7.0;\n  vec4 gy0 = fract(floor(gx0) / 7.0) - 0.5;\n  gx0 = fract(gx0);\n  vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);\n  vec4 sz0 = step(gz0, vec4(0.0));\n  gx0 -= sz0 * (step(0.0, gx0) - 0.5);\n  gy0 -= sz0 * (step(0.0, gy0) - 0.5);\n\n  vec4 gx1 = ixy1 / 7.0;\n  vec4 gy1 = fract(floor(gx1) / 7.0) - 0.5;\n  gx1 = fract(gx1);\n  vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);\n  vec4 sz1 = step(gz1, vec4(0.0));\n  gx1 -= sz1 * (step(0.0, gx1) - 0.5);\n  gy1 -= sz1 * (step(0.0, gy1) - 0.5);\n\n  vec3 g000 = vec3(gx0.x,gy0.x,gz0.x);\n  vec3 g100 = vec3(gx0.y,gy0.y,gz0.y);\n  vec3 g010 = vec3(gx0.z,gy0.z,gz0.z);\n  vec3 g110 = vec3(gx0.w,gy0.w,gz0.w);\n  vec3 g001 = vec3(gx1.x,gy1.x,gz1.x);\n  vec3 g101 = vec3(gx1.y,gy1.y,gz1.y);\n  vec3 g011 = vec3(gx1.z,gy1.z,gz1.z);\n  vec3 g111 = vec3(gx1.w,gy1.w,gz1.w);\n\n  vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));\n  g000 *= norm0.x;\n  g010 *= norm0.y;\n  g100 *= norm0.z;\n  g110 *= norm0.w;\n  vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));\n  g001 *= norm1.x;\n  g011 *= norm1.y;\n  g101 *= norm1.z;\n  g111 *= norm1.w;\n\n  float n000 = dot(g000, Pf0);\n  float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));\n  float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));\n  float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));\n  float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));\n  float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));\n  float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));\n  float n111 = dot(g111, Pf1);\n\n  vec3 fade_xyz = fade(Pf0);\n  vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);\n  vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);\n  float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x); \n  return 2.2 * n_xyz;\n}";
 },{}]},["3KdSp","71k5j"], "71k5j", "parcelRequire427e")
 
