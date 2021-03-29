@@ -5,9 +5,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Wet Words by Morgan Fula</title>
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Playfair+Display&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/index.ea68c68a.css">
+	<link rel="preconnect" href="4a8a00904bae35c1104942c334d95ef2">
+	<link href="a61213b35f1d7c3b09c7c2c1dd3b3a79" rel="stylesheet">
+	<link rel="stylesheet" href="a8f97fbdc1b9bb0fb0560976e8363d58">
 
 </head>
 
@@ -161,7 +161,7 @@
 					<!-- BEGIN item -->
 					<a href="#" class="item item_v">
 						<div class="item__image">
-							<img src="/1.de68398f.jpg" alt="">
+							<img src="303bf0f2f79fecbf8ddf7616db0c4c6a" alt="">
 							<!-- <div class="item__meta">December 23, 2020</div> -->
 						</div>
 
@@ -186,7 +186,7 @@
 					<!-- BEGIN item -->
 					<a href="#" class="item item_h">
 						<div class="item__image">
-							<img src="/2.55e243da.jpg" alt="">
+							<img src="e41f78edb9054ada2d85ff18da73c862" alt="">
 							<!-- <div class="item__meta">December 01, 2020</div> -->
 						</div>
 
@@ -221,7 +221,7 @@
 					<!-- BEGIN item -->
 					<a href="#" class="item item_h">
 						<div class="item__image">
-							<img src="/4.849a75a9.jpg" alt="">
+							<img src="a8095015df37e2eaf8984d3905d05898" alt="">
 							<!-- <div class="item__meta">November 26, 2020</div> -->
 						</div>
 
@@ -239,7 +239,7 @@
 					<!-- BEGIN item -->
 					<a href="#" class="item item_v">
 						<div class="item__image">
-							<img src="/3.5cea96be.jpg" alt="">
+							<img src="b0bc53c95be3517eccbbe514da98b10f" alt="">
 							<!-- <div class="item__meta">November 03, 2020</div> -->
 						</div>
 
@@ -258,7 +258,7 @@
 					<!-- BEGIN item -->
 					<a href="#" class="item item_v">
 						<div class="item__image">
-							<img src="/1.de68398f.jpg" alt="">
+							<img src="303bf0f2f79fecbf8ddf7616db0c4c6a" alt="">
 							<!-- <div class="item__meta">October 05, 2020</div> -->
 						</div>
 
@@ -289,7 +289,7 @@
 					<!-- BEGIN item -->
 					<a href="#" class="item item_h">
 						<div class="item__image">
-							<img src="/2.55e243da.jpg" alt="">
+							<img src="e41f78edb9054ada2d85ff18da73c862" alt="">
 							<!-- <div class="item__meta">July 27, 2020</div> -->
 						</div>
 
@@ -329,7 +329,7 @@
 					<!-- BEGIN item -->
 					<a href="#" class="item item_h">
 						<div class="item__image">
-							<img src="/4.849a75a9.jpg" alt="">
+							<img src="a8095015df37e2eaf8984d3905d05898" alt="">
 							<!-- <div class="item__meta">August 18, 2020</div> -->
 						</div>
 
@@ -357,7 +357,7 @@
 					<!-- BEGIN item -->
 					<a href="#" class="item item_v">
 						<div class="item__image">
-							<img src="/3.5cea96be.jpg" alt="">
+							<img src="b0bc53c95be3517eccbbe514da98b10f" alt="">
 							<!-- <div class="item__meta">June 01, 2020</div> -->
 						</div>
 
@@ -384,7 +384,7 @@
 				<footer class="footer">
 					<!-- <p>&copy; all news from <a href="https://www.livescience.com/topics/ocean">LiveScience</a></p> -->
 					<p>
-						This page was made by <a href="https://www.morganfula.com">Morgan Fula</a>
+						This page was made by <a href="b600d77523e1eb7189bd790187fb2db4">Morgan Fula</a>
 					</p>
 				</footer>
 				<!-- END footer -->
@@ -395,7 +395,7 @@
 		<!-- end scroll -->
 	</main>
 	<div id="container"></div>
-	<script src="/index.24e1d95d.js"></script>
+	<script src="dd9200a91ee7860ba09c1c0650a486d9"></script>
 </body>
 
 </html>
